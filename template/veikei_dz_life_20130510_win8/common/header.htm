@@ -74,41 +74,54 @@
 						<a href="javascript:;" id="switchwidth" onclick="widthauto(this)" title="{if widthauto()}{lang switch_narrow}{else}{lang switch_wide}{/if}" class="switchwidth"><!--{if widthauto()}-->{lang switch_narrow}<!--{else}-->{lang switch_wide}<!--{/if}--></a>
 					<!--{/if}-->
 					<!--{if !empty($_G['style']['extstyle'])}--><a id="sslct" href="javascript:;" onmouseover="delayShow(this, function() {showMenu({'ctrlid':'sslct','pos':'34!'})});">{lang changestyle}</a><!--{/if}-->
-					
-					<!--{if $_G['uid']}-->
-						<a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a>
-						<!--{if $_G['group']['allowinvisible']}-->
-						<span id="loginstatus">
-							<a id="loginstatusid" href="member.php?mod=switchstatus" title="{lang login_switch_invisible_mode}" onclick="ajaxget(this.href, 'loginstatus');return false;" class="xi2"></a>
-						</span>
-						<!--{/if}-->
-						<!--{hook/global_usernav_extra1}-->
-						<span class="pipe">|</span><!--{hook/global_usernav_extra4}--><a href="home.php?mod=spacecp">{lang setup}</a>
-						<span class="pipe">|</span><a href="home.php?mod=space&do=pm" id="pm_ntc"{if $_G[member][newpm]} class="new"{/if}>{lang pm_center}</a>
-						<span class="pipe">|</span><a href="home.php?mod=space&do=notice" id="myprompt"{if $_G[member][newprompt]} class="new"{/if} onmouseover="showMenu({'ctrlid':'myprompt'});">{lang remind}<!--{if $_G[member][newprompt]}-->($_G[member][newprompt])<!--{/if}--></a><span id="myprompt_check"></span>
-						<!--{if empty($_G['cookie']['ignore_notice']) && ($_G[member][newpm] || $_G[member][newprompt_num][follower] || $_G[member][newprompt_num][follow] || $_G[member][newprompt])}--><script language="javascript">delayShow($('myprompt'), function() {showMenu({'ctrlid':'myprompt','duration':3})});</script><!--{/if}-->
-						<!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}--><span class="pipe">|</span><a href="home.php?mod=task&item=doing" id="task_ntc" class="new">{lang task_doing}</a><!--{/if}-->
-						<!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}-->
-							<span class="pipe">|</span><a href="portal.php?mod=portalcp"><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a>
-						<!--{/if}-->
-						<!--{if $_G['uid'] && $_G['group']['radminid'] > 1}-->
-							<span class="pipe">|</span><a href="forum.php?mod=modcp&fid=$_G[fid]" target="_blank">{lang forum_manager}</a>
-						<!--{/if}-->
-						<!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}-->
-							<span class="pipe">|</span><a href="admin.php?frames=yes&action=cloud&operation=applist" target="_blank">{lang cloudcp}</a>
-						<!--{/if}-->
-						<!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}-->
-							<span class="pipe">|</span><a href="admin.php" target="_blank">{lang admincp}</a>
-						<!--{/if}-->
-						<span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
-					<!--{else}-->
-						<a class="top_login" href="member.php?mod=logging&amp;action=login&amp;referer={$_G['referer']}" onClick="showWindow('login', this.href);return false;">{lang login}</a>
-						<a class="top_reg" href="member.php?mod=register">$_G['setting']['reglinkname']</a>
-						<a class="top_find_psw" href="javascript:;" onClick="showWindow('login', 'member.php?mod=logging&action=login&viewlostpw=1')">{lang forgotpw}</a>
-					<!--{/if}-->
+
 					<!--{if check_diy_perm($topic)}-->
 						$diynav
 					<!--{/if}-->
+					
+					<!--{if $_G['uid']}-->
+			        <!-- 添加第三方插件嵌入点 -->
+			        <!--{hook/global_usernav_extra3}-->
+			        <strong > <a class="avts" href="home.php?mod=space&uid=$_G[uid]" ><!--{avatar($_G[uid],small)}--></a> <a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a> </strong>
+			        <!--{hook/global_usernav_extra1}--> 
+			        <span class="pipe">|</span><!--{hook/global_usernav_extra4}--><a href="home.php?mod=spacecp">{lang setup}</a> <span class="pipe">|</span><a href="home.php?mod=space&do=pm" id="pm_ntc"{if $_G[member][newpm]} class="new"{/if}>{lang pm_center}</a> <span class="pipe">|</span><a href="home.php?mod=space&do=notice" id="myprompt"{if $_G[member][newprompt]} class="new"{/if}>{lang remind}<!--{if $_G[member][newprompt]}-->($_G[member][newprompt])<!--{/if}--></a><span id="myprompt_check"></span> 
+			        <!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}--><span class="pipe">|</span><a href="home.php?mod=task&item=doing" id="task_ntc" class="new">{lang task_doing}</a><!--{/if}--> 
+			        <!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}--> 
+			        <span class="pipe">|</span><a href="portal.php?mod=portalcp"><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a> 
+			        <!--{/if}--> 
+			        <!--{if $_G['uid'] && $_G['group']['radminid'] > 1}--> 
+			        <span class="pipe">|</span><a href="forum.php?mod=modcp&fid=$_G[fid]" target="_blank">{lang forum_manager}</a> 
+			        <!--{/if}--> 
+			        <!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}--> 
+			        <span class="pipe">|</span><a href="admin.php?frames=yes&action=cloud&operation=applist" target="_blank">{lang cloudcp}</a> 
+			        <!--{/if}--> 
+			        <!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}--> 
+			        <span class="pipe">|</span><a href="admin.php" target="_blank">{lang admincp}</a> 
+			        <!--{/if}--> 
+			        <!--{hook/global_usernav_extra2}--> 
+			        <span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+					        
+			        <!--{elseif !empty($_G['cookie']['loginuser'])}--> 
+			        <strong><a id="loginuser" class="noborder"><!--{echo dhtmlspecialchars($_G['cookie']['loginuser'])}--></a></strong> <span class="pipe">|</span><a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang activation}</a> <span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> 
+			        <!--{elseif !$_G[connectguest]}--> 
+			        
+			        <!-- QQ、人人等第三方登录入口 --> 
+			        <a class="top_login_qq"  title="用QQ账号登录" href="/connect.php?mod=login&op=init&referer=forum.php&statfrom=login_simple"> </a> 
+					<!--        
+					<a class="top_login_rr" title="用人人账号登录" href="#"> </a> 
+			        <a class="top_login_weibo" href="#" title="用新浪微博账号登录" > </a> 
+					-->        
+			        <a class="top_login" href="member.php?mod=logging&action=login&referer={echo rawurlencode($dreferer)}" onClick="showWindow('login', this.href);return false;"  title="登录 Login" > {lang login} </a> 
+			        <a class="top_reg"  href="member.php?mod={$_G[setting][regname]}"  title="注册 Register" > 注册</a> <a class="top_find_psw" href="javascript:;" onClick="showWindow('login', 'member.php?mod=logging&action=login&viewlostpw=1')"> {lang forgotpw} </a> 
+			        <!--{else}--> 
+			        <!-- QQ 互联 QQ用户登录后显示的用户信息内容区 start -->
+					<a class="avts y" ><!--{avatar(0,small)}--></a>
+					<strong class="vwmy qq">{$_G[member][username]}</strong>
+					<!--{hook/global_usernav_extra1}-->
+					<span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+					<span class="pipe">|</span>{lang usergroup}: $_G[group][grouptitle]
+			        <!-- QQ QQ用户 互联登录后显示的用户信息内容区 end -->
+			        <!--{/if}-->
 				</div>
 			</div>
 		</div>
@@ -136,7 +149,7 @@
 				<div id="sslct_menu" class="cl p_pop" style="display: none;">
 					<!--{if !$_G[style][defaultextstyle]}--><span class="sslct_btn" onclick="extstyle('')" title="{lang default}"><i></i></span><!--{/if}-->
 					<!--{loop $_G['style']['extstyle'] $extstyle}-->
-						<span class="sslct_btn" onclick="extstyle('$extstyle[0]')" title="$extstyle[1]"><i style='background:$extstyle[2]'></i></span>
+						<span class="sslct_btn" onclick="extstyle('$extstyle[0]')" title="$extstyle[1]"><i style='background:$extstyle[2]'></i>{$extstyle[1]}</span>
 					<!--{/loop}-->
 				</div>
 			<!--{/if}-->
@@ -151,43 +164,43 @@
 					<h2><!--{if !isset($_G['setting']['navlogos'][$mnid])}--><a href="{if $_G['setting']['domain']['app']['default']}http://{$_G['setting']['domain']['app']['default']}/{else}./{/if}" title="$_G['setting']['bbname']">{$_G['style']['boardlogo']}</a><!--{else}-->$_G['setting']['navlogos'][$mnid]<!--{/if}--></h2>
 					<!--{template common/vk_top_search}-->
 				</div>
+			</div>
+			<div id="nv">
+				<ul>
+					<!--{loop $_G['setting']['navs'] $nav}-->
+						<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}--><li {if $mnid == $nav[navid]}class="a" {/if}$nav[nav]></li><!--{/if}-->
+					<!--{/loop}-->
+				</ul>
+				<!--{hook/global_nav_extra}-->
+			</div>
 
-				<div id="nv">
-					<a href="javascript:;" id="qmenu" onmouseover="delayShow(this, function () {showMenu({'ctrlid':'qmenu','pos':'34!','ctrlclass':'a','duration':2});showForummenu($_G[fid]);})">{lang my_nav}</a>
-					<ul>
-						<!--{loop $_G['setting']['navs'] $nav}-->
-							<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}--><li {if $mnid == $nav[navid]}class="a" {/if}$nav[nav]></li><!--{/if}-->
-						<!--{/loop}-->
+			<!--{if !empty($_G['setting']['plugins']['jsmenu'])}-->
+				<ul class="p_pop h_pop" id="plugin_menu" style="display: none">
+				<!--{loop $_G['setting']['plugins']['jsmenu'] $module}-->
+					 <!--{if !$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])}-->
+					 <li>$module[url]</li>
+					 <!--{/if}-->
+				<!--{/loop}-->
+				</ul>
+			<!--{/if}-->
+			$_G[setting][menunavs]
+			<div id="mu" class="cl">
+			<!--{if $_G['setting']['subnavs']}-->
+				<!--{loop $_G[setting][subnavs] $navid $subnav}-->
+					<!--{if $_G['setting']['navsubhover'] || $mnid == $navid}-->
+					<ul class="cl {if $mnid == $navid}current{/if}" id="snav_$navid" style="display:{if $mnid != $navid}none{/if}">
+					$subnav
 					</ul>
-					<!--{hook/global_nav_extra}-->
-				</div>
-				<!--{if !empty($_G['setting']['plugins']['jsmenu'])}-->
-					<ul class="p_pop h_pop" id="plugin_menu" style="display: none">
-					<!--{loop $_G['setting']['plugins']['jsmenu'] $module}-->
-						 <!--{if !$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])}-->
-						 <li>$module[url]</li>
-						 <!--{/if}-->
-					<!--{/loop}-->
-					</ul>
-				<!--{/if}-->
-				$_G[setting][menunavs]
-				<div id="mu" class="cl">
-				<!--{if $_G['setting']['subnavs']}-->
-					<!--{loop $_G[setting][subnavs] $navid $subnav}-->
-						<!--{if $_G['setting']['navsubhover'] || $mnid == $navid}-->
-						<ul class="cl {if $mnid == $navid}current{/if}" id="snav_$navid" style="display:{if $mnid != $navid}none{/if}">
-						$subnav
-						</ul>
-						<!--{/if}-->
-					<!--{/loop}-->
-				<!--{/if}-->
-				</div>
-				<!--{ad/subnavbanner/a_mu}-->
-				<!--{subtemplate common/pubsearchform}-->
+					<!--{/if}-->
+				<!--{/loop}-->
+			<!--{/if}-->
 			</div>
 		</div>
 
 		<!--{hook/global_header}-->
 	<!--{/if}-->
+
+	<!-- 自定义二级导航模块 -->
+	<!--{subtemplate common/vk_nv_sub}-->
 
 	<div id="wp" class="wp">
