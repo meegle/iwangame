@@ -1,0 +1,61 @@
+/*
+[name]时尚紫[/name]
+[iconbgcolor]#80d[/iconbgcolor]
+未来科技 设计
+www.veikei.com
+*/
+
+
+.ft_wp { background:#fff url(bg_ft.png) bottom center repeat-x;}
+
+border_top_1 { border-top:none;}
+
+/* search */
+			#scbar_logo_r { background: url(search_logo_r.png) no-repeat 0 0; }
+				.scbar_btn_td { background: url(search_logo_r.png) no-repeat  -450px 0;  }
+
+				.search_post a { background:url(search_post.png) no-repeat 0 0; }
+
+
+
+/* nv*/
+			#nv { background: url(nv.png);   } 
+			#nv ul{ background: url(nv.png);   } 
+/*				#nv li { background: url(nv_li.png) no-repeat 100%  0; }
+*/
+					#nv li a { color: #fff;  } 
+					#nv li.a { color:#fff; background: url(nv_a.png) ; } 
+						#nv li.a a { color:#fff;  } 
+						#nv li a:hover { color:#fff;  background: url(nv_a.png);  } 
+						#nv li.hover a:hover, #nv li.hover a { color:#fff;  background: url(nv_a.png) ; } 
+
+						
+/* portal title */
+/*
+.col h2 { background:url(bg_title_h2.png) no-repeat; }
+	.col h2 a { color:#333; }
+		.col h2 span a { color:#333; }
+*/		
+
+/* vk_top_post */
+.vk_top_post a {  background:#80d;  }
+.vk_top_post a:hover {  background:#5a1; }
+
+
+/* sidebar  */
+.vk_simple_cat li a { background:#80d; color:#fff;  }
+.vk_simple_cat li a:hover { background:#5a1;  }
+
+
+/*
+slide inner
+202x202
+*/
+.vk_slide_l_r_4_202 .leftbtn:hover { background:url(bg_vk_slide_l_btn_h_202.png); }
+.vk_slide_l_r_4_202 .rightbtn:hover { background:url(bg_vk_slide_r_btn_h_202.png); }
+
+
+
+
+.vk_newspecial {  background: url(vk_pn_post.png) no-repeat 0 0;}
+
