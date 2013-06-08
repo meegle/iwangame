@@ -111,9 +111,10 @@
 					<a class="top_login_rr" title="用人人账号登录" href="#"> </a> 
 			        <a class="top_login_weibo" href="#" title="用新浪微博账号登录" > </a> 
 					-->        
-			        <a class="top_login" href="member.php?mod=logging&action=login&referer={echo rawurlencode($dreferer)}" onClick="showWindow('login', this.href);return false;"  title="登录 Login" > {lang login} </a> 
-			        <a class="top_reg"  href="member.php?mod={$_G[setting][regname]}"  title="注册 Register" > 注册</a> <a class="top_find_psw" href="javascript:;" onClick="showWindow('login', 'member.php?mod=logging&action=login&viewlostpw=1')"> {lang forgotpw} </a> 
-			        <!--{else}--> 
+			        <a class="top_login" href="member.php?mod=logging&action=login&referer={echo rawurlencode($dreferer)}" onClick="showWindow('login', this.href);return false;">{lang login}</a>
+			        <a class="top_reg"  href="member.php?mod={$_G[setting][regname]}">$_G['setting']['reglinkname']</a>
+			        <a class="top_find_psw" href="javascript:;" onClick="showWindow('login', 'member.php?mod=logging&action=login&viewlostpw=1')">{lang forgotpw}</a>
+			        <!--{else}-->
 			        <!-- QQ 互联 QQ用户登录后显示的用户信息内容区 start -->
 					<a class="avts y" ><!--{avatar(0,small)}--></a>
 					<strong class="vwmy qq">{$_G[member][username]}</strong>
