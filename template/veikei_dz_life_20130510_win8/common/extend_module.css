@@ -1,12 +1,3 @@
-/*
-未来科技
-自定义或重定义 默认 module.css 文件相关属性
-http://www.veikei.com
-*/
-
-
-
-
 /* ----------------------------------- 文章、日志等页面样式 */
 /** portal::list,home::space **/
 .bm_h .addnew { margin-left: 10px; padding-left: 20px; font-size:14px; color:#06c; background: url({IMGDIR}/addbuddy.gif) no-repeat 0 45%; }
